@@ -47,5 +47,34 @@ public class Principal {
         System.out.println("Nova arvore....");
         arvore.imprimirInOrdem();
         System.out.println(""); 
+        while(true) {
+	        System.out.println("Digite uma opcao: ");
+	        System.out.println("1. Inserir");
+	        System.out.println("2. Remover");
+	        System.out.println("3. Mostrar");
+			Scanner entrada = new Scanner(System.in);
+			int opcao = entrada.nextInt();
+			
+			switch(opcao) {
+			case 1:
+				System.out.println("Digite um valor: ");
+				int valorin = entrada.nextInt();
+				arvore.inserir(new Elemento(valorin));
+				break;
+			case 2:
+				System.out.println("Digite um valor: ");
+				int valorre = entrada.nextInt();
+				elem.setValor(valorre);
+				arvore = arvore.remover(elem);
+				break;
+			case 3:
+				arvore.imprimirInOrdem();
+				break;
+			default:
+				System.out.println("Opção inválida");
+			}
+		
+			entrada.close();
+		}
     }
 }
