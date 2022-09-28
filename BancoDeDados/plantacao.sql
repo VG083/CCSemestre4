@@ -7,7 +7,7 @@ CREATE TABLE canteiro (
 canteiroID INT NOT NULL AUTO_INCREMENT,
 nome CHAR(20) DEFAULT NULL,
 luzdiaria DECIMAL(4,3) DEFAULT NULL,
-agua DECIMAL(4,3) DEFAULT NULL,
+aguadiaria DECIMAL(4,3) DEFAULT NULL,
 PRIMARY KEY (canteiroID),
 UNIQUE KEY (canteiroID)
 );
@@ -59,9 +59,10 @@ FOREIGN KEY(funcID) REFERENCES funcionario(funcID),
 FOREIGN KEY(plantaID) REFERENCES canteiro(canteiroID)
 );
 
-INSERT INTO canteiro(canteiroID, nome, luzdiaria, agua) VALUES (1, 'Morango', 5.5, 9.8);
-INSERT INTO canteiro(canteiroID, nome, luzdiaria, agua) VALUES (2, 'Coentro', 5.5, 9.8);
-INSERT INTO canteiro(canteiroID, nome, luzdiaria, agua) VALUES (3, 'Tomate', 5.5, 9.8);
+-- Inserindo Dados nas Tabelas dos Banco de Dados
+INSERT INTO canteiro(canteiroID, nome, luzdiaria, aguadiaria) VALUES (1, 'Morango', 5.5, 9.8);
+INSERT INTO canteiro(canteiroID, nome, luzdiaria, aguadiaria) VALUES (2, 'Coentro', 5.5, 9.8);
+INSERT INTO canteiro(canteiroID, nome, luzdiaria, aguadiaria) VALUES (3, 'Tomate', 5.5, 9.8);
 
 INSERT INTO funcionario(funcID, nome, idade) VALUES (1, 'Jose Nilton', 19);
 INSERT INTO funcionario(funcID, nome, idade) VALUES (2, 'Danilo Oliveira', 20);
@@ -79,5 +80,8 @@ INSERT INTO colhido(colhidoID, plantaID, funcID, canteiroID, datacolheita, quant
 INSERT INTO colhido(colhidoID, plantaID, funcID, canteiroID, datacolheita, quantidade, peso) VALUES (2, 2, 2, 2, '22-12-27', 10, 1.8);
 INSERT INTO colhido(colhidoID, plantaID, funcID, canteiroID, datacolheita, quantidade, peso) VALUES (3, 3, 3, 3, '22-12-27', 9, 1.8);
 
--- DELETE FROM canteiro where canteiroID=1;
--- drop database plantacao;
+SELECT * FROM canteiro;
+SELECT * FROM funcionario;
+SELECT * FROM planta;
+SELECT * FROM plantio;
+SELECT * FROM colhido;
