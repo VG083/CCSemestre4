@@ -33,3 +33,13 @@ FROM tb_produto WHERE preco<500;
 SELECT nome AS descricao, preco, 'Promocional' as valor
 FROM tb_produto WHERE preco<500;
 
+SELECT * FROM tb_fabricante;
+
+SELECT * FROM tb_pedido;
+SELECT codigoVendedor FROM tb_pedido;
+SELECT DISTINCT codigoVendedor FROM tb_pedido;
+
+SELECT * FROM tb_vendedor;
+SELECT nome, salario, salario*1.15 as salarioComAumentoDe15PorCento FROM tb_vendedor;
+SELECT nome, salario, salario*1.15 as salarioComAumentoDe15PorCento FROM tb_vendedor WHERE salario<=4000;
+
