@@ -26,3 +26,10 @@ SELECT * FROM tb_produto WHERE preco>295.50;
 SELECT * FROM tb_produto WHERE preco>=200 AND preco<=1000;
 SELECT * FROM tb_produto WHERE preco IS NULL;
 SELECT * FROM tb_produto WHERE preco IS NOT NULL;
+
+SELECT * FROM tb_produto;
+SELECT nome, preco, 'Promocional' as valor
+FROM tb_produto WHERE preco<500;
+SELECT nome AS descricao, preco, 'Promocional' as valor
+FROM tb_produto WHERE preco<500;
+
