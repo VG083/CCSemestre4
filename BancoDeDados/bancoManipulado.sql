@@ -42,4 +42,8 @@ SELECT DISTINCT codigoVendedor FROM tb_pedido;
 SELECT * FROM tb_vendedor;
 SELECT nome, salario, salario*1.15 as salarioComAumentoDe15PorCento FROM tb_vendedor;
 SELECT nome, salario, salario*1.15 as salarioComAumentoDe15PorCento FROM tb_vendedor WHERE salario<=4000;
+SELECT nome, salario, salario*1.15 as novoSalario FROM tb_vendedor WHERE salario<=4000 order by nome ASC;
+SELECT nome, salario, salario*1.15 as novoSalario FROM tb_vendedor WHERE salario<=4000 order by nome DESC;
 
+SELECT * FROM tb_produto;
+SELECT preco FROM tb_produto WHERE nome in ('TV', 'Laptop');
