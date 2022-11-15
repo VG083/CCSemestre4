@@ -77,8 +77,7 @@ def exibirTabelaHash(lista):
         print(f'Matricula: {registro.matricula}', end='')
     print('')
 
-grupo_de_hashs = [[], [Aluno(1,"Jose",19), Aluno(12,"Nilton",19), Aluno(23,"Oliveira",19)], [Aluno(2,"Ricardo",20)], [Aluno(3,"Danilo",22)], [Aluno(4,"Everton",20)], [Aluno(5,"Everton",20)], [Aluno(6,"Thiago",20)], [Aluno(7,"Pedro",20)], [Aluno(8,"Hermano",20)], [Aluno(9,"Alvaro",20)], [Aluno(10,"Jadilson",20)]]
-#grupo_de_hashs = [[], [], [], [], [], [], [], [], [], [], []]
+grupo_de_hashs = [[], [], [], [], [], [], [], [], [], [], []]
 
 ligarPrograma = True
 while ligarPrograma == True:
