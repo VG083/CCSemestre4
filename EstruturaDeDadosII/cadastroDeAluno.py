@@ -94,8 +94,7 @@ while ligarPrograma == True:
             if checarMatriculaRepetida(matricula, grupo_de_hashs[hash_definida]):
                 break
             print(f'{vermelho}Ja existe aluno com essa matricula, tente novamente\033[m')
-        nome = str(input('Digite o nome do aluno: '))
-        nome = nome.title()
+        nome = str(input('Digite o nome do aluno: ')).title()
         idade = leiaInt('Digite a idade do aluno: ')
         novo_aluno = Aluno(matricula, nome, idade)
         grupo_hash = grupo_de_hashs[hash_definida]
