@@ -1,3 +1,5 @@
+import os
+
 vermelho = "\033[1;31m"  
 ciano = "\033[1;36m"
 verde = "\033[0;32m"
@@ -8,13 +10,27 @@ class Aluno():
         self.nome = nome 
         self.idade = idade 
 
+def leiaInt(mensagem):
+    feito = False
+    valor = 0
+    while True:
+        n = str(input(mensagem))
+        if n.isnumeric():
+            valor = int(n)
+            feito = True
+        else:
+            print(f'{vermelho}Inválido, digite um número inteiro válido\033[m')
+        if feito:
+            break
+    return valor
+
 def menu():
-    print('MENU')
+    print('MENU\n')
     print('1. Inserir novo aluno')
     print('2. Buscar por aluno')
     print('3. Remover aluno')
     print('4. Exibir tabela hash')
-    print('5. Encerrar programa')
+    print('5. Encerrar programa\n')
 
 def aguardar():
     input(f'{ciano}Pressione qualquer tecla para continuar\033[m')
@@ -66,18 +82,21 @@ grupo_de_hashs = [[], [Aluno(1,"Jose",19), Aluno(12,"Nilton",19), Aluno(23,"Oliv
 
 ligarPrograma = True
 while ligarPrograma == True:
+    os.system('cls')
     menu()
     opcao = lerOpcao('Digite sua opcao: ')
+    os.system('cls')
     if opcao == 1:
-        print('INSERINDO NOVO ALUNO')
+        print('INSERINDO NOVO ALUNO\n')
         while True:
-            matricula = int(input('Digite a matricula do aluno: '))
+            matricula = leiaInt('Digite a matricula do aluno: ')
             hash_definida = matricula%11
             if checarMatriculaRepetida(matricula, grupo_de_hashs[hash_definida]):
                 break
             print(f'{vermelho}Ja existe aluno com essa matricula, tente novamente\033[m')
         nome = str(input('Digite o nome do aluno: '))
-        idade = int(input('Digite a idade do aluno: '))
+        nome = nome.title()
+        idade = leiaInt('Digite a idade do aluno: ')
         novo_aluno = Aluno(matricula, nome, idade)
         grupo_hash = grupo_de_hashs[hash_definida]
         grupo_hash.append(novo_aluno)
@@ -85,10 +104,11 @@ while ligarPrograma == True:
         grupo_de_hashs[hash_definida] = hash_ordenado
         print(f'{verde}O aluno foi adicionado com sucesso\033[m')
         aguardar()
+        os.system('cls')
     elif opcao == 2:
-        print('BUSCANDO POR ALUNO')
+        print('BUSCANDO POR ALUNO\n')
         while True:
-            matricula = int(input('Digite a matricula do aluno: '))
+            matricula = leiaInt('Digite a matricula do aluno: ')
             hash_definida = matricula%11
             if checarMatriculaInexistente(matricula, grupo_de_hashs[hash_definida]):
                 break
@@ -101,10 +121,11 @@ while ligarPrograma == True:
                 print(f'Nome: {registro.nome}')
                 print(f'Idade: {registro.idade}')
         aguardar()
+        os.system('cls')
     elif opcao == 3:
-        print('REMOVENDO ALUNO')
+        print('REMOVENDO ALUNO\n')
         while True:
-            matricula = int(input('Digite a matricula do aluno: '))
+            matricula = leiaInt('Digite a matricula do aluno: ')
             hash_definida = matricula%11
             if checarMatriculaInexistente(matricula, grupo_de_hashs[hash_definida]):
                 break
@@ -119,13 +140,14 @@ while ligarPrograma == True:
             indice += 1
         grupo_de_hashs[hash_definida] = lista_de_busca
         aguardar()
+        os.system('cls')
     elif opcao == 4:
-        print('EXIBINDO TABELA HASH')
+        print('EXIBINDO TABELA HASH\n')
         for i in range(11):
             print(f'Hash {i}', end='')
             exibirTabelaHash(grupo_de_hashs[i])
         aguardar()
+        os.system('cls')
     elif opcao == 5:
         print('ENCERRANDO PROGRAMA')
         ligarPrograma = False
-    print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
