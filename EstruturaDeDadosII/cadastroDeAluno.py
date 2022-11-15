@@ -3,7 +3,6 @@ ciano = "\033[1;36m"
 verde = "\033[0;32m"
 
 class Aluno():
-    #Construtor da classe
     def __init__(self, matricula, nome, idade):
         self.matricula = matricula
         self.nome = nome 
@@ -30,29 +29,25 @@ def lerOpcao(msg):
             if valor in (1,2,3,4,5):
                 ok = True
             else:
-                print(f'{vermelho}Digite um valor valido\033[m')
+                print(f'{vermelho}Digite uma opcao valida\033[m')
         else: 
-            print(f'{vermelho}Digite um valor valido\033[m')
+            print(f'{vermelho}Digite uma opcao valida\033[m')
         if ok:
             break
     return valor
 
-def checarMatriculaRepetida(msg, lista):
-    ok = False
-    valor = 0
-    while True:
-        n = str(input(msg))
-        if n.isnumeric():
-            valor = int(n)
-            if valor in (1,2,3,4,5):
-                ok = True
-            else:
-                print(f'{vermelho}Digite um valor valido\33[m')
-        else: 
-            print(f'{vermelho}Digite um valor valido\33[m')
-        if ok:
-            break
-    return valor
+def checarMatriculaRepetida(matricula, lista):
+    for registro in lista:
+        if registro.matricula == matricula:
+            return False
+    return True
+
+def checarMatriculaInexistente(matricula, lista):
+    for registro in lista:
+        if registro.matricula == matricula:
+            return True
+    return False
+
 
 def buscarNaLista(lista):
     for registro in lista:
@@ -66,9 +61,8 @@ def exibirTabelaHash(lista):
         print(f'Matricula: {registro.matricula}', end='')
     print('')
 
-#Cria a tabela de hashs
-# grupo_de_hashs = [[], [Aluno(1,"Jose",19), Aluno(12,"Nilton",19), Aluno(23,"Oliveira",19)], [Aluno(2,"Ricardo",20)], [Aluno(3,"Danilo",22)], [Aluno(4,"Everton",20)], [Aluno(5,"Everton",20)], [Aluno(6,"Thiago",20)], [Aluno(7,"Pedro",20)], [Aluno(8,"Hermano",20)], [Aluno(9,"Alvaro",20)], [Aluno(10,"Jadilson",20)]]
-grupo_de_hashs = [[], [], [], [], [], [], [], [], [], [], []]
+grupo_de_hashs = [[], [Aluno(1,"Jose",19), Aluno(12,"Nilton",19), Aluno(23,"Oliveira",19)], [Aluno(2,"Ricardo",20)], [Aluno(3,"Danilo",22)], [Aluno(4,"Everton",20)], [Aluno(5,"Everton",20)], [Aluno(6,"Thiago",20)], [Aluno(7,"Pedro",20)], [Aluno(8,"Hermano",20)], [Aluno(9,"Alvaro",20)], [Aluno(10,"Jadilson",20)]]
+#grupo_de_hashs = [[], [], [], [], [], [], [], [], [], [], []]
 
 ligarPrograma = True
 while ligarPrograma == True:
@@ -76,8 +70,12 @@ while ligarPrograma == True:
     opcao = lerOpcao('Digite sua opcao: ')
     if opcao == 1:
         print('INSERINDO NOVO ALUNO')
-        matricula = int(input('Digite a matricula do aluno: '))
-        hash_definida = matricula%11
+        while True:
+            matricula = int(input('Digite a matricula do aluno: '))
+            hash_definida = matricula%11
+            if checarMatriculaRepetida(matricula, grupo_de_hashs[hash_definida]):
+                break
+            print(f'{vermelho}Ja existe aluno com essa matricula, tente novamente\033[m')
         nome = str(input('Digite o nome do aluno: '))
         idade = int(input('Digite a idade do aluno: '))
         novo_aluno = Aluno(matricula, nome, idade)
@@ -85,38 +83,49 @@ while ligarPrograma == True:
         grupo_hash.append(novo_aluno)
         hash_ordenado = sorted(grupo_hash, key=lambda x: x.matricula,reverse=False)
         grupo_de_hashs[hash_definida] = hash_ordenado
+        print(f'{verde}O aluno foi adicionado com sucesso\033[m')
+        aguardar()
     elif opcao == 2:
         print('BUSCANDO POR ALUNO')
-        matricula = int(input('Digite a matricula do aluno: '))
+        while True:
+            matricula = int(input('Digite a matricula do aluno: '))
+            hash_definida = matricula%11
+            if checarMatriculaInexistente(matricula, grupo_de_hashs[hash_definida]):
+                break
+            print(f'{vermelho}Nao existe aluno com essa matricula, tente novamente\033[m')
         hash_definida = matricula%11
         buscar = matricula
         lista_de_busca = grupo_de_hashs[hash_definida]
         for registro in lista_de_busca:
             if registro.matricula == buscar:
-                print('achei')
-                print(registro.matricula)
-                print(registro.nome)
-                print(registro.idade)
+                print(f'Nome: {registro.nome}')
+                print(f'Idade: {registro.idade}')
+        aguardar()
     elif opcao == 3:
         print('REMOVENDO ALUNO')
-        matricula = int(input('Digite a matricula do aluno: '))
+        while True:
+            matricula = int(input('Digite a matricula do aluno: '))
+            hash_definida = matricula%11
+            if checarMatriculaInexistente(matricula, grupo_de_hashs[hash_definida]):
+                break
+            print(f'{vermelho}Nao existe aluno com essa matricula, tente novamente\033[m')
         hash_definida = matricula%11
-        deletar = matricula
         indice = 0
         lista_de_busca = grupo_de_hashs[hash_definida]
         for registro in lista_de_busca:
-            if registro.matricula == deletar:
-                print('apaguei')
+            if registro.matricula == matricula:
+                print(f'{verde}O aluno de matricula {matricula} foi deletado\033[m')
                 del(lista_de_busca[indice])
             indice += 1
         grupo_de_hashs[hash_definida] = lista_de_busca
+        aguardar()
     elif opcao == 4:
         print('EXIBINDO TABELA HASH')
         for i in range(11):
             print(f'Hash {i}', end='')
             exibirTabelaHash(grupo_de_hashs[i])
+        aguardar()
     elif opcao == 5:
-        print('Encerrando programa')
+        print('ENCERRANDO PROGRAMA')
         ligarPrograma = False
-    else:
-        print('Opcao invalida, tente novamente')
+    print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
