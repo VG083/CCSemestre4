@@ -43,3 +43,13 @@ $$
 
 CALL sp_consultalivro('Java')
 
+DELIMITER $$
+CREATE PROCEDURE sp_consulta2(nomeEditora varchar(20))
+BEGIN
+SELECT e.nome, a.nome, l.titulo, l.valor, l.ano
+FROM editora e, assunto a, livro l
+WHERE e.codigo=l.editora AND a.sigla=l.assunto AND e.nome=nomeEditora;
+END
+$$
+
+CALL sp_consulta2('Saraiva')
