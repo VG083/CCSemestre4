@@ -1,17 +1,10 @@
 
-package ed2.projeto.algoritmosordenacao;
+package e2.projeto;
 
-/**
- * 
- * @author Hilario Tomaz Alves de Oliveira
- *
- */
+public class BubbleSort {
 
-public class BubbleSort implements IAlgoritmoOrdenacao {
-
-  @Override
-	
-  public void ordenarVetor(int[] vetor) {
+  public static void ordenarVetor(int[] vetor) {
+	  
 
     boolean isTroca;
 
