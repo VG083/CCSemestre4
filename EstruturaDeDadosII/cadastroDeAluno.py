@@ -76,6 +76,7 @@ def exibirTabelaHash(lista):
         print(f'Matricula: {registro.matricula}', end='')
     print('')
 
+#grupo_de_hashs = [[], [], [], [], [], [], [], [], [], [], []] 
 grupo_de_hashs = [[], [Aluno(1, 'Jose', 19), Aluno(23, 'Oliveira', 21), Aluno(34, 'Netto', 22)], [Aluno(2, 'Danilo', 19)], [Aluno(3, 'Ricardo', 19)], [Aluno(4, 'Everton', 19)], [Aluno(5, 'Pedro', 19)], [Aluno(6, 'Thiago', 19)], [Aluno(7, 'Hermano', 19)], [Aluno(8, 'Celani', 19)], [Aluno(9, 'Alvaro', 19)], [Aluno(10, 'Jadilson', 19)]]
 
 ligarPrograma = True
@@ -101,11 +102,9 @@ while ligarPrograma == True:
         if grupo_hash == []:
             grupo_hash.append(novo_aluno)
         else:
-            indice = 0
             for registro in grupo_hash:
                 if registro.matricula < matricula:
                     novo_grupo_hash.append(registro)
-                    indice += 1
                 if registro.matricula > matricula:
                     nova_lista.append(registro)
             novo_grupo_hash.append(novo_aluno)
